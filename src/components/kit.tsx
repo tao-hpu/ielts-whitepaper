@@ -23,7 +23,7 @@ const BANDS = [
   { n: '4', lab: 'Limited' },
   { n: '5', lab: 'Modest' },
   { n: '6', lab: 'Competent', zone: true },
-  { n: '6.5', lab: '目标线', zone: true, target: true },
+  { n: '6.5', lab: '示范', zone: true, target: true },
   { n: '7', lab: 'Good', zone: true },
   { n: '8·9', lab: 'Very good / Expert' },
 ]
@@ -43,8 +43,8 @@ export function BandRuler({ caption = 'The 9-band scale · 雅思的那把尺' }
         ))}
       </div>
       <div className="ruler-note">
-        <span>◍ 每 <b>0.5</b> 分一档，0–9 共 19 档</span>
         <span>◍ <b>6.0–7.0</b> 是绝大多数留学 / 签证门槛带</span>
+        <span>◍ 本书方法适用 <b>5.5–7.5</b>，以 6.5 为示范样例</span>
       </div>
     </div>
   )

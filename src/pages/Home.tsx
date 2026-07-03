@@ -22,8 +22,8 @@ export function Home() {
 
         <div className="hero-meta">
           <span>类型 · Academic</span>
-          <span>示范目标 · Overall 6.5</span>
-          <span>周期 · 10 周</span>
+          <span>覆盖 · 5.5–7.5</span>
+          <span>示范样例 · 6.5</span>
           <span>设计 · 与 l2a 同源</span>
         </div>
 

@@ -80,7 +80,7 @@ function Shell() {
             <span className="nav-toggle-icon">{open ? '✕' : '☰'}</span>
           </button>
           <Link to="/" className="wordmark">
-            听说读写 <span className="arrow">→</span> 6.5
+            听说读写 <span className="arrow">→</span> 目标分
           </Link>
         </div>
         <nav className="topnav">

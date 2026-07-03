@@ -36,7 +36,7 @@ export const parts: Part[] = [
     name: '第二部分 · 分数的逆向工程',
     blurb: '总分是平均分，于是拿分有最优解。',
     chapters: [
-      { slug: 'score-arithmetic', num: '04', title: '分数是凑出来的', hook: '6.5 该怎么配分？田忌赛马，别平均发力', bridge: '7 + 7 + 6 + 6 = 6.5', status: 'live', core: true },
+      { slug: 'score-arithmetic', num: '04', title: '分数是凑出来的', hook: '目标分该怎么配分？田忌赛马，别平均发力', bridge: '6.0 / 6.5 / 7.0 三张配分表', status: 'live', core: true },
       { slug: 'the-paraphrase-chain', num: '05', title: '焊住四项的同义替换链', hook: '听说读写不是四门课，共享一条底层链', bridge: '输入识别 → 输出产出', status: 'live', core: true },
     ],
   },

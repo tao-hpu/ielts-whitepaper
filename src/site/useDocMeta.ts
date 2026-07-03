@@ -33,7 +33,7 @@ export function useDocMeta() {
     const slug = pathname.startsWith('/ch/') ? pathname.slice('/ch/'.length) : ''
     const c = slug ? findChapter(slug) : undefined
 
-    const title = c ? `${c.num} ${c.title} · ${SITE}` : `${SITE} · 从零到 Band 6.5`
+    const title = c ? `${c.num} ${c.title} · ${SITE}` : `${SITE} · 从零到你的目标分`
     const desc = c ? c.hook : DEFAULT_DESC
 
     document.title = title
