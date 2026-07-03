@@ -22,9 +22,20 @@
 }
 .wordmark .arrow{color:var(--green);font-weight:400;margin:0 2px;}
 .topnav{display:flex;align-items:center;gap:16px;}
-.topnav a{font-size:13.5px;color:var(--ink-soft);text-decoration:none;}
+.topnav a{font-size:13.5px;color:var(--ink-soft);text-decoration:none;white-space:nowrap;}
 .topnav a:hover,.topnav a.active{color:var(--green);}
 .star-link{font-family:var(--mono);font-size:12.5px;}
+
+/* ── 顶栏移动端：收窄留白、精简右侧、招牌不换行 ─────────────────── */
+@media (max-width:560px){
+  .topbar{padding:0 13px;gap:8px;height:54px;}
+  .topbar-left{gap:9px;}
+  .nav-toggle{width:32px;height:32px;}
+  .wordmark{font-size:15px;}
+  .topnav{gap:11px;}
+  .topnav a:not(.star-link){display:none;}  /* ☰ 侧栏 + 招牌已是「大纲」入口，去重 */
+  .star-link{font-size:12px;}
+}
 
 /* ── 主体：侧栏 + 内容 ────────────────────────────────────────── */
 .body{display:flex;flex:1 1 auto;min-height:0;}
@@ -134,7 +145,10 @@ a.side-link:hover{background:var(--green-tint);}
 .search-trigger-icon{font-size:14px;}
 .search-kbd{font-family:var(--mono);font-size:10.5px;background:var(--panel);
   border:1px solid var(--line-strong);border-radius:3px;padding:0 4px;color:var(--muted);}
-@media (max-width:560px){.search-trigger-text{display:none;}}
+@media (max-width:560px){
+  .search-trigger-text,.search-kbd{display:none;}  /* 手机无快捷键，收成纯图标 */
+  .search-trigger{padding:6px 9px;}
+}
 
 .search-overlay{position:fixed;inset:0;z-index:60;background:rgba(20,22,16,.32);
   display:flex;align-items:flex-start;justify-content:center;padding:12vh 16px 16px;}
@@ -222,6 +236,8 @@ a.ol-item:hover .ol-num{color:var(--green);}
 
 @media (max-width:600px){
   .home{padding:36px 22px 20px;}
+  .page{padding:30px 20px 20px;}
+  .ol-item{gap:10px;padding:12px 4px;}
   .ol-bridge{display:none;}
 }
 
