@@ -85,6 +85,7 @@ function Shell() {
         </div>
         <nav className="topnav">
           <SearchPalette />
+          <NavLink to="/planner" className={({ isActive }) => `nav-planner ${isActive ? 'active' : ''}`}>自测</NavLink>
           <NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>大纲</NavLink>
           <a className="star-link" href="https://github.com/tao-hpu/ielts-whitepaper"
             target="_blank" rel="noreferrer">★ GitHub</a>

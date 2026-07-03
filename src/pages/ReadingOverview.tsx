@@ -26,7 +26,7 @@ export function ReadingOverview() {
           <tbody>
             <tr><td>扫读全文抓结构</td><td className="num">2–3 min</td><td>看首末段、每段首句，建"文章地图"，不逐字读</td></tr>
             <tr><td>做题 + 回原文定位</td><td className="num">15 min</td><td>顺题号找关键词回原文，读那一两句就够</td></tr>
-            <tr><td>誊卡 / 检查</td><td className="num">1–2 min</td><td>纸考要留誊卡时间；拿不准的先猜不空</td></tr>
+            <tr><td>回看 / 检查</td><td className="num">1–2 min</td><td>机考直接作答、无誊卡时间；留点时间回看标记（flag）的题，拿不准先猜不空</td></tr>
           </tbody>
         </table>
       </div>

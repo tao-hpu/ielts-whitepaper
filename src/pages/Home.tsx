@@ -27,11 +27,16 @@ export function Home() {
           <span>设计 · 与 l2a 同源</span>
         </div>
 
-        {start && (
-          <Link className="start-cta" to={chapterPath(start)}>
-            从第 01 节开始 <span className="arrow">→</span>
+        <div className="hero-cta">
+          {start && (
+            <Link className="start-cta" to={chapterPath(start)}>
+              从第 01 节开始 <span className="arrow">→</span>
+            </Link>
+          )}
+          <Link className="start-cta ghost" to="/planner">
+            先测你的起点 <span className="arrow">→</span>
           </Link>
-        )}
+        </div>
       </header>
 
       <section className="two-ideas">

@@ -32,16 +32,25 @@ export function useDocMeta() {
   useEffect(() => {
     const slug = pathname.startsWith('/ch/') ? pathname.slice('/ch/'.length) : ''
     const c = slug ? findChapter(slug) : undefined
+    const isPlanner = pathname.startsWith('/planner')
 
-    const title = c ? `${c.num} ${c.title} · ${SITE}` : `${SITE} · 从零到你的目标分`
-    const desc = c ? c.hook : DEFAULT_DESC
+    const title = c
+      ? `${c.num} ${c.title} · ${SITE}`
+      : isPlanner
+        ? `备考规划器 · ${SITE}`
+        : `${SITE} · 从零到你的目标分`
+    const desc = c
+      ? c.hook
+      : isPlanner
+        ? '填五个问题，纯规则算出你的四项象限、目标配分表、预计周期和每周时间配方。'
+        : DEFAULT_DESC
 
     document.title = title
     setMeta('description', desc)
     setProperty('og:title', title)
     setProperty('og:description', desc)
     setProperty('og:type', 'website')
-    setProperty('og:url', `https://ielts.fim.ai${c ? `/ch/${slug}` : ''}`)
+    setProperty('og:url', `https://ielts.fim.ai${c ? `/ch/${slug}` : isPlanner ? '/planner' : ''}`)
     setMeta('twitter:title', title)
     setMeta('twitter:description', desc)
   }, [pathname])

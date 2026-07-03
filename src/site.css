@@ -33,7 +33,7 @@
   .nav-toggle{width:32px;height:32px;}
   .wordmark{font-size:15px;}
   .topnav{gap:11px;}
-  .topnav a:not(.star-link){display:none;}  /* ☰ 侧栏 + 招牌已是「大纲」入口，去重 */
+  .topnav a:not(.star-link):not(.nav-planner){display:none;}  /* 隐去冗余「大纲」，留「自测」这个核心入口 */
   .star-link{font-size:12px;}
 }
 
@@ -204,6 +204,10 @@ a.side-link:hover{background:var(--green-tint);}
 }
 .start-cta:hover{background:var(--green-deep);}
 .start-cta .arrow{font-family:var(--mono);}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px;}
+.hero-cta .start-cta{margin-top:0;}
+.start-cta.ghost{background:transparent;border:1px solid var(--green);}
+.start-cta.ghost:hover{background:var(--green-tint);}
 
 .two-ideas{margin:44px 0;}
 
@@ -246,8 +250,12 @@ a.ol-item:hover .ol-num{color:var(--green);}
 /* 全局 .home a / .page a（正文链接）优先级会盖过下列组件类，这里显式抬高。 */
 .home a.start-cta{color:#fff;border-bottom:0;}
 .home a.start-cta:hover{color:#fff;border-bottom:0;}
+/* ghost 是描边按钮，底边要保留成绿框（不是下划线） */
+.home a.start-cta.ghost{color:var(--green);border-bottom:1px solid var(--green);}
+.home a.start-cta.ghost:hover{color:var(--green-deep);border-bottom-color:var(--green-deep);}
 .home a.ol-item{color:var(--ink);border-bottom:1px solid var(--line);}
 .home a.ol-item:hover{color:var(--ink);}
 .home a.ol-item:hover .ol-num{color:var(--green);}
-.page a.pager-link{color:inherit;border-bottom:0;}
-.page a.pager-link:hover{border-bottom:0;}
+/* 翻页卡是四边框，底边保留成卡片边框（不是下划线），别归零 */
+.page a.pager-link{color:inherit;border-bottom:1px solid var(--line-strong);}
+.page a.pager-link:hover{border-bottom:1px solid var(--green);}

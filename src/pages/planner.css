@@ -1,0 +1,123 @@
+/* 备考规划器 —— 沿用学院绿 token，chips / 象限图 / 配方条 */
+
+.planner .pl-form{margin-top:8px;}
+.pl-field{margin:22px 0;}
+.pl-field > label{
+  display:block;font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.03em;
+  color:var(--green);text-transform:uppercase;margin-bottom:10px;
+}
+.pl-chips{display:flex;flex-wrap:wrap;gap:9px;}
+.pl-chip{
+  font-family:var(--sans);font-size:14px;color:var(--ink);cursor:pointer;
+  background:var(--paper-raise);border:1px solid var(--line-strong);border-radius:6px;
+  padding:8px 15px;transition:border-color .12s,background .12s;
+}
+.pl-chip:hover{border-color:var(--green);}
+.pl-chip.on{background:var(--green);color:#fff;border-color:var(--green);font-weight:600;}
+
+.pl-skills{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.pl-skill{display:flex;align-items:center;gap:12px;
+  background:var(--paper-raise);border:1px solid var(--line-strong);border-radius:7px;padding:10px 14px;}
+.pl-skill-k{font-family:var(--serif);font-weight:700;font-size:15px;flex:none;min-width:38px;}
+.pl-skill select{
+  flex:1 1 auto;min-width:0;font-family:var(--sans);font-size:14px;color:var(--ink);
+  background:var(--paper);border:1px solid var(--line-strong);border-radius:5px;padding:7px 9px;cursor:pointer;
+}
+.pl-skill select:focus-visible{outline:2px solid var(--green);outline-offset:1px;}
+
+.pl-run{
+  display:inline-flex;align-items:center;gap:8px;margin-top:8px;cursor:pointer;
+  background:var(--green);color:#fff;font-family:var(--serif);font-size:15.5px;font-weight:600;
+  padding:12px 26px;border:0;border-radius:7px;
+}
+.pl-run:hover{background:var(--green-deep);}
+.pl-run .arrow{font-family:var(--mono);}
+
+/* ── 结果区 ─────────────────────────────────────────────── */
+.pl-result{margin-top:14px;padding-top:12px;}
+.pl-nowat{font-size:16px;color:var(--ink-soft);margin:2px 0 8px;}
+.pl-nowat b{color:var(--green-deep);}
+.pl-block{margin:26px 0;}
+.pl-block-h{
+  font-family:var(--serif);font-weight:700;font-size:16.5px;color:var(--green-deep);
+  margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line);
+}
+.pl-quad-name{color:var(--green);}
+.pl-fine{font-size:12.5px;color:var(--muted);font-family:var(--mono);line-height:1.6;margin-top:10px;}
+
+/* 象限图 */
+.pl-quad-wrap{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:22px;align-items:center;}
+.pl-quad{
+  position:relative;aspect-ratio:1/1;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:2px;
+  background:var(--line-strong);border:1px solid var(--line-strong);border-radius:8px;overflow:hidden;
+}
+.pl-cell{background:var(--paper-raise);display:flex;align-items:center;justify-content:center;padding:6px;}
+.pl-cell span{font-family:var(--mono);font-size:11px;color:var(--muted);text-align:center;line-height:1.3;}
+.pl-cell.active{background:var(--green-soft);}
+.pl-cell.active span{color:var(--green-deep);font-weight:700;}
+.pl-dot{
+  position:absolute;width:16px;height:16px;border-radius:50%;background:var(--green);
+  border:3px solid var(--paper);box-shadow:0 0 0 1.5px var(--green);
+  transform:translate(-50%,-50%);z-index:2;transition:left .4s,top .4s;
+}
+.pl-axis{position:absolute;font-family:var(--mono);font-size:10px;letter-spacing:.04em;
+  color:var(--muted);text-transform:uppercase;z-index:3;pointer-events:none;}
+.pl-axis-x{bottom:6px;right:8px;}
+.pl-axis-y{top:6px;left:8px;}
+.pl-quad-strat{font-size:15px;line-height:1.7;color:var(--ink);margin:0;}
+
+/* 缺口徽标 */
+.pl-gap{font-family:var(--mono);font-weight:700;color:var(--warn);}
+
+/* 周期 */
+.pl-weeks{display:flex;align-items:center;gap:24px;flex-wrap:wrap;
+  background:var(--paper-raise);border:1px solid var(--line-strong);border-radius:8px;padding:18px 22px;}
+.pl-weeks-big{font-family:var(--serif);font-weight:700;font-size:44px;line-height:1;color:var(--green);
+  font-variant-numeric:tabular-nums;}
+.pl-weeks-big span{font-size:17px;margin-left:4px;color:var(--ink-soft);font-weight:400;}
+.pl-feas{display:flex;flex-direction:column;gap:5px;flex:1 1 220px;min-width:0;}
+.pl-feas-badge{align-self:flex-start;font-family:var(--mono);font-size:12px;font-weight:700;
+  letter-spacing:.04em;padding:3px 11px;border-radius:20px;}
+.pl-feas-note{font-size:14px;color:var(--ink-soft);line-height:1.6;}
+.pl-feas.ok .pl-feas-badge{background:var(--green-soft);color:var(--green-deep);}
+.pl-feas.warn .pl-feas-badge{background:var(--gold-soft);color:#7a5f1e;}
+.pl-feas.bad .pl-feas-badge{background:#F4E0D8;color:var(--warn);}
+.pl-feas.mut .pl-feas-badge{background:var(--panel-2);color:var(--muted);}
+
+/* 优先级 */
+.pl-prio{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.pl-prio-col{background:var(--paper-raise);border:1px solid var(--line-strong);border-radius:8px;padding:14px 16px;}
+.pl-prio-k{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.03em;margin-bottom:10px;}
+.pl-prio-k.fast{color:var(--green);}
+.pl-prio-k.slow{color:var(--gold);}
+.pl-prio-item{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--ink);margin:8px 0;}
+.pl-prio-item span{display:block;font-family:var(--sans);font-weight:400;font-size:12.5px;color:var(--ink-soft);
+  line-height:1.5;margin-top:1px;}
+.pl-prio-none{font-size:13px;color:var(--muted);font-family:var(--mono);}
+
+/* 每周配方条 */
+.pl-bars{display:flex;flex-direction:column;gap:11px;}
+.pl-bar-row{display:grid;grid-template-columns:40px 1fr 44px;align-items:center;gap:12px;}
+.pl-bar-k{font-family:var(--serif);font-weight:700;font-size:14px;}
+.pl-bar-track{height:12px;background:var(--panel-2);border-radius:6px;overflow:hidden;}
+.pl-bar-fill{height:100%;background:var(--green);border-radius:6px;transition:width .5s;}
+.pl-bar-v{font-family:var(--mono);font-size:13px;color:var(--green-deep);text-align:right;
+  font-variant-numeric:tabular-nums;}
+
+/* 推荐章节 */
+.pl-links{list-style:none;margin:0;padding:0;}
+.pl-links li{border-bottom:1px solid var(--line);}
+.pl-links li:last-child{border-bottom:0;}
+.pl-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 6px;font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink);
+  text-decoration:none;border-bottom:0;}
+.pl-links a:hover{color:var(--green);}
+.pl-links a .arrow{font-family:var(--mono);color:var(--green);font-weight:400;}
+
+@media (max-width:640px){
+  .pl-skills{grid-template-columns:1fr;}
+  .pl-quad-wrap{grid-template-columns:1fr;gap:16px;}
+  .pl-quad{max-width:300px;margin:0 auto;}
+  .pl-prio{grid-template-columns:1fr;}
+}

@@ -25,6 +25,7 @@ const WritingTask2 = L(import('./pages/WritingTask2'), 'WritingTask2')
 const TrainingLoop = L(import('./pages/TrainingLoop'), 'TrainingLoop')
 const TenWeekPlan = L(import('./pages/TenWeekPlan'), 'TenWeekPlan')
 const ExamDayResources = L(import('./pages/ExamDayResources'), 'ExamDayResources')
+const Planner = L(import('./pages/Planner'), 'Planner')
 
 function PageFallback() {
   return <div className="page-loading" role="status" aria-live="polite">加载中…</div>
@@ -36,6 +37,10 @@ export default function App() {
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />
+          <Route
+            path="planner"
+            element={<Suspense fallback={<PageFallback />}><Planner /></Suspense>}
+          />
           <Route
             path="ch/*"
             element={
