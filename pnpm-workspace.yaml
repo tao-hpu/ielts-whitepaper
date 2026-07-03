@@ -1,0 +1,4 @@
+# pnpm 10：允许 esbuild 运行安装脚本（安装其平台二进制），Vite 打包需要。
+# pnpm 9（Docker 构建）默认就会执行构建脚本，不读此设置，故互不影响。
+allowBuilds:
+  esbuild: true

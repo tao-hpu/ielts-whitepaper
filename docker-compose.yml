@@ -1,0 +1,9 @@
+services:
+  web:
+    build: .
+    image: ielts-whitepaper:latest
+    container_name: ielts-whitepaper
+    restart: always
+    # 只监听本地端口，公网由服务器上的 nginx 反代（如 ielts.fim.ai → 此端口）
+    ports:
+      - "127.0.0.1:5192:80"
