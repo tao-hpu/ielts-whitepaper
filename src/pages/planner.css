@@ -33,6 +33,15 @@
 .pl-run:hover{background:var(--green-deep);}
 .pl-run .arrow{font-family:var(--mono);}
 
+.pl-actions{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:8px;}
+.pl-actions .pl-run{margin-top:0;}
+.pl-clear{
+  cursor:pointer;background:transparent;border:0;padding:8px 4px;
+  font-family:var(--sans);font-size:14px;color:var(--muted);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--line-strong);
+}
+.pl-clear:hover{color:var(--warn);text-decoration-color:currentColor;}
+
 /* ── 结果区 ─────────────────────────────────────────────── */
 .pl-result{margin-top:14px;padding-top:12px;}
 .pl-nowat{font-size:16px;color:var(--ink-soft);margin:2px 0 8px;}

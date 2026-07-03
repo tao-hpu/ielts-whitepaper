@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   SKILLS, SKILL_ZH, SELF_LEVELS, analyze,
-  type Skill, type Bands, type Hours, type PlannerResult, type Feasibility,
+  type Skill, type Bands, type Hours, type PlannerInput, type PlannerResult, type Feasibility,
 } from '../planner/rules'
 import './planner.css'
 
@@ -23,17 +23,58 @@ const HOURS_OPTIONS: { key: Hours; label: string }[] = [
 
 type Mode = 'taken' | 'self'
 
+// 表单默认值 —— 首访 & 清空后都回到这里
+const DEFAULTS = {
+  mode: 'self' as Mode,
+  target: 6.5,
+  timeframe: 'm23',
+  hours: 'mid' as Hours,
+  taken: { listening: 6, reading: 6.5, writing: 5.5, speaking: 5.5 } as Bands,
+  self: { listening: 'b', reading: 'c', writing: 'b', speaking: 'a' } as Record<Skill, string>,
+}
+
+const STORAGE_KEY = 'ielts-planner-v1'
+
+// 持久化的形状：五项选择 + 「算一算」当时用的输入快照（刷新后据此重算结果）
+interface Persisted {
+  mode: Mode; target: number; timeframe: string; hours: Hours
+  taken: Bands; self: Record<Skill, string>
+  ranInputs: PlannerInput | null
+}
+
+function loadSaved(): Partial<Persisted> {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? (JSON.parse(raw) as Partial<Persisted>) : {}
+  } catch {
+    return {}
+  }
+}
+
 export function Planner() {
-  const [mode, setMode] = useState<Mode>('self')
-  const [target, setTarget] = useState(6.5)
-  const [timeframe, setTimeframe] = useState('m23')
-  const [hours, setHours] = useState<Hours>('mid')
+  const [saved] = useState(loadSaved) // 只在挂载时读一次
+  const [mode, setMode] = useState<Mode>(saved.mode ?? DEFAULTS.mode)
+  const [target, setTarget] = useState(saved.target ?? DEFAULTS.target)
+  const [timeframe, setTimeframe] = useState(saved.timeframe ?? DEFAULTS.timeframe)
+  const [hours, setHours] = useState<Hours>(saved.hours ?? DEFAULTS.hours)
   // 考过：直接填 band；没考过：填自评档位 key
-  const [taken, setTaken] = useState<Bands>({ listening: 6, reading: 6.5, writing: 5.5, speaking: 5.5 })
-  const [self, setSelf] = useState<Record<Skill, string>>({
-    listening: 'b', reading: 'c', writing: 'b', speaking: 'a',
-  })
-  const [result, setResult] = useState<PlannerResult | null>(null)
+  const [taken, setTaken] = useState<Bands>(saved.taken ?? DEFAULTS.taken)
+  const [self, setSelf] = useState<Record<Skill, string>>(saved.self ?? DEFAULTS.self)
+  const [ranInputs, setRanInputs] = useState<PlannerInput | null>(saved.ranInputs ?? null)
+  // 刷新后：有快照就据此重算，把上次「算一算」的结果原样还原
+  const [result, setResult] = useState<PlannerResult | null>(
+    saved.ranInputs ? analyze(saved.ranInputs) : null,
+  )
+
+  // 选择变化 / 重新算一算都写回 localStorage
+  useEffect(() => {
+    const data: Persisted = { mode, target, timeframe, hours, taken, self, ranInputs }
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
+    } catch {
+      /* localStorage 不可用（隐私模式等）时静默降级，不影响算一算 */
+    }
+  }, [mode, target, timeframe, hours, taken, self, ranInputs])
 
   const run = () => {
     const current: Bands = mode === 'taken'
@@ -43,11 +84,29 @@ export function Planner() {
           return acc
         }, {} as Bands)
     const weeksAvailable = TIMEFRAMES.find((t) => t.key === timeframe)!.weeks
-    setResult(analyze({ target, weeksAvailable, hours, current }))
+    const input: PlannerInput = { target, weeksAvailable, hours, current }
+    setRanInputs(input)
+    setResult(analyze(input))
     // 结果区滚入视野
     requestAnimationFrame(() => {
       document.getElementById('planner-result')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     })
+  }
+
+  const clearAll = () => {
+    setMode(DEFAULTS.mode)
+    setTarget(DEFAULTS.target)
+    setTimeframe(DEFAULTS.timeframe)
+    setHours(DEFAULTS.hours)
+    setTaken({ ...DEFAULTS.taken })
+    setSelf({ ...DEFAULTS.self })
+    setRanInputs(null)
+    setResult(null)
+    try {
+      localStorage.removeItem(STORAGE_KEY)
+    } catch {
+      /* 忽略 */
+    }
   }
 
   return (
@@ -136,9 +195,14 @@ export function Planner() {
           </div>
         </div>
 
-        <button type="button" className="pl-run" onClick={run}>
-          算一算 <span className="arrow">→</span>
-        </button>
+        <div className="pl-actions">
+          <button type="button" className="pl-run" onClick={run}>
+            算一算 <span className="arrow">→</span>
+          </button>
+          {result && (
+            <button type="button" className="pl-clear" onClick={clearAll}>清空重来</button>
+          )}
+        </div>
       </section>
 
       {result && <Result r={result} target={target} />}
