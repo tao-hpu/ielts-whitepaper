@@ -17,8 +17,11 @@ const ParaphraseChain = L(import('./pages/ParaphraseChain'), 'ParaphraseChain')
 const Listening = L(import('./pages/Listening'), 'Listening')
 const ReadingOverview = L(import('./pages/ReadingOverview'), 'ReadingOverview')
 const ReadingTfng = L(import('./pages/ReadingTfng'), 'ReadingTfng')
+const ReadingMatching = L(import('./pages/ReadingMatching'), 'ReadingMatching')
 const Speaking = L(import('./pages/Speaking'), 'Speaking')
 const WritingOverview = L(import('./pages/WritingOverview'), 'WritingOverview')
+const WritingTask1 = L(import('./pages/WritingTask1'), 'WritingTask1')
+const WritingTask2 = L(import('./pages/WritingTask2'), 'WritingTask2')
 const TrainingLoop = L(import('./pages/TrainingLoop'), 'TrainingLoop')
 const TenWeekPlan = L(import('./pages/TenWeekPlan'), 'TenWeekPlan')
 const ExamDayResources = L(import('./pages/ExamDayResources'), 'ExamDayResources')
@@ -46,8 +49,11 @@ export default function App() {
                   <Route path="listening" element={<Listening />} />
                   <Route path="reading-overview" element={<ReadingOverview />} />
                   <Route path="reading-tfng" element={<ReadingTfng />} />
+                  <Route path="reading-matching" element={<ReadingMatching />} />
                   <Route path="speaking" element={<Speaking />} />
                   <Route path="writing-overview" element={<WritingOverview />} />
+                  <Route path="writing-task1" element={<WritingTask1 />} />
+                  <Route path="writing-task2" element={<WritingTask2 />} />
                   <Route path="the-training-loop" element={<TrainingLoop />} />
                   <Route path="ten-week-plan" element={<TenWeekPlan />} />
                   <Route path="exam-day-and-resources" element={<ExamDayResources />} />

@@ -47,7 +47,7 @@ export const parts: Part[] = [
       { slug: 'listening', num: '06', title: '听力：定位与同义替换', hook: '听懂了却丢分？问题在定位和拼写', bridge: '目标 Band 7', status: 'live' },
       { slug: 'reading-overview', num: '07', title: '阅读：题型地图与配速', hook: '60 分钟 3 篇 40 题，时间怎么分？', bridge: '目标 Band 7', status: 'live' },
       { slug: 'reading-tfng', num: '08', title: '阅读：T/F/NG 的分界线', hook: '把 Not Given 当 False，是丢分头号原因', bridge: '最区分水平的题型', status: 'live', core: true },
-      { slug: 'reading-matching', num: '09', title: '阅读：Matching 与段落定位', hook: 'Matching Headings 的反向陷阱怎么破？', bridge: '规划中', status: 'planned' },
+      { slug: 'reading-matching', num: '09', title: '阅读：Matching 与段落定位', hook: 'Matching Headings 的反向陷阱怎么破？', bridge: '目标 Band 7', status: 'live' },
     ],
   },
   {
@@ -56,8 +56,8 @@ export const parts: Part[] = [
     chapters: [
       { slug: 'speaking', num: '10', title: '口语：框架与素材库', hook: '别背模板——考官一听一个准', bridge: '目标 Band 6', status: 'live' },
       { slug: 'writing-overview', num: '11', title: '写作：两个 Task 与四个维度', hook: 'Task 2 权重更高，时间和结构都要留够', bridge: '目标 Band 6', status: 'live' },
-      { slug: 'writing-task1', num: '12', title: '写作 Task 1：图表语言库', hook: '趋势、比较、数据——描述图表的固定表达', bridge: '规划中', status: 'planned' },
-      { slug: 'writing-task2', num: '13', title: '写作 Task 2：论证结构范式', hook: '立场 → 论点 → 例证 → 让步的四段骨架', bridge: '规划中', status: 'planned' },
+      { slug: 'writing-task1', num: '12', title: '写作 Task 1：图表语言库', hook: '趋势、比较、数据——描述图表的固定表达', bridge: '目标 Band 6', status: 'live' },
+      { slug: 'writing-task2', num: '13', title: '写作 Task 2：论证结构范式', hook: '立场 → 论点 → 例证 → 让步的四段骨架', bridge: '目标 Band 6', status: 'live' },
     ],
   },
   {

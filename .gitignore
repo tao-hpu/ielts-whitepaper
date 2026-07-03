@@ -12,3 +12,6 @@ dist-ssr
 
 # 部署脚本不进公开仓库（只放服务器上）
 deploy.sh
+
+# pnpm 10+ 本地放行 esbuild 构建脚本用；仅本地，勿进仓库（Docker 用 pnpm 9 自动构建，不需要）
+pnpm-workspace.yaml
