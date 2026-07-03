@@ -42,16 +42,15 @@ pnpm dev      # http://localhost:5192
 pnpm build    # 产物在 dist/
 ```
 
-## 部署（aws-hk · Docker + nginx）
+## 自托管
+
+构建产物是一个纯静态站，`dist/` 丢给任何静态服务器都能跑。仓库自带 Docker 配置：
 
 ```bash
-ssh aws-hk
-git clone git@github.com:tao-hpu/ielts-whitepaper.git ~/ielts-whitepaper
-cd ~/ielts-whitepaper
-bash deploy.sh        # build 镜像 + 起容器，监听 127.0.0.1:5192
+docker compose up -d --build   # 构建镜像并起容器，默认监听 127.0.0.1:5192
 ```
 
-容器只监听本地端口，公网流量由服务器上的 nginx 反代到对应域名。
+容器只监听本地端口，前面挂一层反向代理（nginx / Caddy 等）指到该端口即可对外。不想用 Docker，直接 `pnpm build` 后把 `dist/` 交给你惯用的静态托管也行。
 
 ## 许可
 
