@@ -29,16 +29,17 @@ export function BandScale() {
       <h2><span className="h2-en">How the overall is computed</span>总分怎么算：四项平均，进到半档</h2>
       <p>总分 = 听说读写四项的<strong>算术平均</strong>，再进到最近的半档。规则：平均值尾数
         <span className="kw"> .25 进到 .5</span>，<span className="kw">.75 进到下一整数</span>。</p>
+      <p>下面四行都是<strong>示例算例</strong>——不是评分维度，就是四个例子：把不同的四项分代进同一条规则，看总分怎么落档。</p>
       <div className="table-x">
         <table className="ledger">
           <thead>
-            <tr><th className="num">听</th><th className="num">读</th><th className="num">写</th><th className="num">说</th><th className="num">平均</th><th className="num">总分</th></tr>
+            <tr><th>示例</th><th className="num">听</th><th className="num">读</th><th className="num">写</th><th className="num">说</th><th className="num">平均</th><th className="num">总分</th></tr>
           </thead>
           <tbody>
-            <tr><td className="num">6.5</td><td className="num">6.5</td><td className="num">5.5</td><td className="num">6</td><td className="num">6.125</td><td className="num"><span className="score">6.0</span></td></tr>
-            <tr><td className="num">6.5</td><td className="num">6.5</td><td className="num">6</td><td className="num">6</td><td className="num">6.25</td><td className="num"><span className="score hi">6.5</span></td></tr>
-            <tr><td className="num">7</td><td className="num">6.5</td><td className="num">6</td><td className="num">6.5</td><td className="num">6.5</td><td className="num"><span className="score hi">6.5</span></td></tr>
-            <tr><td className="num">7</td><td className="num">7</td><td className="num">6.5</td><td className="num">6.5</td><td className="num">6.75</td><td className="num"><span className="score">7.0</span></td></tr>
+            <tr><td className="ex">例 1</td><td className="num">6.5</td><td className="num">6.5</td><td className="num">5.5</td><td className="num">6</td><td className="num">6.125</td><td className="num"><span className="score">6.0</span></td></tr>
+            <tr><td className="ex">例 2</td><td className="num">6.5</td><td className="num">6.5</td><td className="num">6</td><td className="num">6</td><td className="num">6.25</td><td className="num"><span className="score hi">6.5</span></td></tr>
+            <tr><td className="ex">例 3</td><td className="num">7</td><td className="num">6.5</td><td className="num">6</td><td className="num">6.5</td><td className="num">6.5</td><td className="num"><span className="score hi">6.5</span></td></tr>
+            <tr><td className="ex">例 4</td><td className="num">7</td><td className="num">7</td><td className="num">6.5</td><td className="num">6.5</td><td className="num">6.75</td><td className="num"><span className="score">7.0</span></td></tr>
           </tbody>
         </table>
       </div>

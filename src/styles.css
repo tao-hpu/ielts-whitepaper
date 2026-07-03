@@ -97,6 +97,7 @@ table.ledger tbody tr:last-child td{border-bottom:0;}
 table.ledger td.num, table.ledger th.num{
   font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;
 }
+table.ledger td.ex{font-family:var(--mono);font-size:12px;color:var(--muted);white-space:nowrap;}
 .score{font-family:var(--mono);font-weight:600;font-variant-numeric:tabular-nums;}
 .score.hi{color:var(--green);}
 tr.total td{background:var(--green-soft);font-weight:640;}
