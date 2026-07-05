@@ -10,7 +10,7 @@ export const SKILL_ZH: Record<Skill, string> = {
 }
 export type Bands = Record<Skill, number>
 
-export type Hours = 'low' | 'mid' | 'high' // <5h / 5–10h / >10h 每周
+export type Hours = 'low' | 'mid' | 'high' | 'sprint' // <5h / 5–10h / 10–25h / >25h 每周
 
 export interface PlannerInput {
   target: number                 // 目标总分 5.5 ~ 7.5，步进 0.5
@@ -90,7 +90,9 @@ export function gaps(cur: Bands, tgt: Bands): Bands {
 const COST_PER_HALF: Record<Skill, number> = {
   listening: 2, reading: 2, writing: 4, speaking: 3.5,
 }
-const HOURS_FACTOR: Record<Hours, number> = { low: 1.4, mid: 1, high: 0.8 }
+// sprint 不按小时线性外推：说写受「写一批→复盘一批」的反馈节奏约束，
+// 全职强度主要压缩听读周期，所以只比 high 再快两成。
+const HOURS_FACTOR: Record<Hours, number> = { low: 1.4, mid: 1, high: 0.8, sprint: 0.6 }
 const FLOOR_WEEKS = 4 // 即便零缺口，也需要熟悉机考格式 + 至少一轮模考
 
 export function weeksNeeded(g: Bands, hours: Hours): number {

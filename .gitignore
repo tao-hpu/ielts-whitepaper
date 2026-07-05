@@ -10,6 +10,9 @@ dist-ssr
 *.log
 *.tsbuildinfo
 
+# Playwright MCP 浏览器会话产物（调试用，不进仓库）
+.playwright-mcp/
+
 # 部署脚本不进公开仓库（只放服务器上）
 deploy.sh
 

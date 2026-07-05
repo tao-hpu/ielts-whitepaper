@@ -26,6 +26,7 @@ const TrainingLoop = L(import('./pages/TrainingLoop'), 'TrainingLoop')
 const TenWeekPlan = L(import('./pages/TenWeekPlan'), 'TenWeekPlan')
 const ExamDayResources = L(import('./pages/ExamDayResources'), 'ExamDayResources')
 const Planner = L(import('./pages/Planner'), 'Planner')
+const QuickLinks = L(import('./pages/QuickLinks'), 'QuickLinks')
 
 function PageFallback() {
   return <div className="page-loading" role="status" aria-live="polite">加载中…</div>
@@ -40,6 +41,10 @@ export default function App() {
           <Route
             path="planner"
             element={<Suspense fallback={<PageFallback />}><Planner /></Suspense>}
+          />
+          <Route
+            path="links"
+            element={<Suspense fallback={<PageFallback />}><QuickLinks /></Suspense>}
           />
           <Route
             path="ch/*"

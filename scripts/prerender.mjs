@@ -32,8 +32,7 @@ const escText = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>
 
 const indexHtml = readFileSync(join(root, 'dist/index.html'), 'utf8')
 
-function pageHtml({ num, title, hook, url }) {
-  const t = `${num} ${title} · ${SITE}`
+function pageHtml({ t, hook, url }) {
   let html = indexHtml
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escText(t)}</title>`)
   const setAttr = (re, val) => { html = html.replace(re, (_m, a, b) => `${a}${escAttr(val)}${b}`) }
@@ -52,15 +51,29 @@ for (const c of chapters) {
   const url = `${BASE}/ch/${c.slug}`
   const dir = join(root, 'dist/ch', c.slug)
   mkdirSync(dir, { recursive: true })
-  writeFileSync(join(dir, 'index.html'), pageHtml({ ...c, url }))
+  writeFileSync(join(dir, 'index.html'), pageHtml({ t: `${c.num} ${c.title} · ${SITE}`, hook: c.hook, url }))
   n++
 }
 console.log(`[prerender] 已生成 ${n} 个章节的静态 meta 页 → dist/ch/<slug>/index.html`)
+
+// ── 工具页（非章节路由）：title/desc 与 useDocMeta.ts 保持一致 ──
+const EXTRA_PAGES = [
+  { path: 'planner', title: `备考规划器 · ${SITE}`, desc: '填五个问题，纯规则算出你的四项象限、目标配分表、预计周期和每周时间配方。' },
+  { path: 'links', title: `官方链接速查 · ${SITE}`, desc: '报名、备考、评分标准、真题——雅思官方入口一页直达。' },
+]
+for (const p of EXTRA_PAGES) {
+  const url = `${BASE}/${p.path}`
+  const dir = join(root, 'dist', p.path)
+  mkdirSync(dir, { recursive: true })
+  writeFileSync(join(dir, 'index.html'), pageHtml({ t: p.title, hook: p.desc, url }))
+}
+console.log(`[prerender] 已生成 ${EXTRA_PAGES.length} 个工具页的静态 meta 页 → dist/<path>/index.html`)
 
 // ── sitemap.xml 也从 chapters.ts 生成，永不与章节清单漂移 ──
 const urls = [
   `  <url><loc>${BASE}/</loc><priority>1.0</priority></url>`,
   ...chapters.map((c) => `  <url><loc>${BASE}/ch/${c.slug}</loc><priority>0.8</priority></url>`),
+  ...EXTRA_PAGES.map((p) => `  <url><loc>${BASE}/${p.path}</loc><priority>0.6</priority></url>`),
 ]
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -68,4 +81,4 @@ ${urls.join('\n')}
 </urlset>
 `
 writeFileSync(join(root, 'dist/sitemap.xml'), sitemap)
-console.log(`[prerender] 已生成 sitemap.xml（${chapters.length + 1} 条 URL）→ dist/sitemap.xml`)
+console.log(`[prerender] 已生成 sitemap.xml（${urls.length} 条 URL）→ dist/sitemap.xml`)

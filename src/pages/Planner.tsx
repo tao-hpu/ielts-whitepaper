@@ -18,7 +18,8 @@ const TIMEFRAMES: { key: string; label: string; weeks: number | null }[] = [
 const HOURS_OPTIONS: { key: Hours; label: string }[] = [
   { key: 'low', label: '每周 < 5 小时' },
   { key: 'mid', label: '每周 5–10 小时' },
-  { key: 'high', label: '每周 > 10 小时' },
+  { key: 'high', label: '每周 10–25 小时' },
+  { key: 'sprint', label: '每周 > 25 小时 · 全职冲刺' },
 ]
 
 type Mode = 'taken' | 'self'
@@ -205,7 +206,7 @@ export function Planner() {
         </div>
       </section>
 
-      {result && <Result r={result} target={target} />}
+      {result && <Result r={result} target={target} sprint={ranInputs?.hours === 'sprint'} />}
     </div>
   )
 }
@@ -218,7 +219,7 @@ const FEAS: Record<Feasibility, { tone: string; label: string; note: string }> =
   unknown: { tone: 'mut', label: '先定考期', note: '把考试日期定下来，才能算够不够——建议现在就报名。' },
 }
 
-function Result({ r, target }: { r: PlannerResult; target: number }) {
+function Result({ r, target, sprint }: { r: PlannerResult; target: number; sprint?: boolean }) {
   const feas = FEAS[r.feasibility]
   // 象限图坐标：x=输入端(听读)，y=输出端(说写)，band 4→9 映射 0→100%
   const inputCur = (r.current.listening + r.current.reading) / 2
@@ -292,6 +293,9 @@ function Result({ r, target }: { r: PlannerResult; target: number }) {
           </div>
         </div>
         <p className="pl-fine">按「各项并行训练、取最慢那项」估算，已计入你的每周投入。零缺口也至少留 4 周熟悉机考格式 + 模考。</p>
+        {sprint && (
+          <p className="pl-fine">全职强度提醒：&gt;25 小时/周压缩的主要是听读的周期——说写受「写一批 → 复盘一批」的反馈节奏约束，时间堆上去回报会先变平。多出来的时间优先花在模考和错题复盘，别全砸给刷题量。</p>
+        )}
       </div>
 
       {/* 优先级 */}

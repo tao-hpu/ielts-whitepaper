@@ -35,6 +35,36 @@ export function ReadingTfng() {
         <li>题干：<em>Navigators found memorising the stars difficult.</em> → <b>NOT GIVEN</b>（原文没说"难不难"，别用常识脑补）</li>
       </ul>
 
+      <h2><span className="h2-en">Trigger patterns</span>FALSE 和 NOT GIVEN 各长什么样</h2>
+      <p>出题人制造"矛盾"和"没说"的手法其实非常固定（从历年真题归纳的经验规律）。两张清单对号入座，绝大多数题当场判完：</p>
+      <div className="table-x">
+        <table className="ledger">
+          <thead>
+            <tr><th>FALSE 的四种手法</th><th>微型例子（原文 → 题干）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>直接相反</strong></td><td><code>rises → falls</code></td></tr>
+            <tr><td><strong>程度 / 频率升级</strong></td><td><code>some / often → all / always</code></td></tr>
+            <tr><td><strong>"之一"改"唯一"</strong></td><td><code>one of the reasons → the only reason</code></td></tr>
+            <tr><td><strong>观点说成事实</strong></td><td><code>scientists believe → it has been proven</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div className="table-x">
+        <table className="ledger">
+          <thead>
+            <tr><th>NOT GIVEN 的四种手法</th><th>微型例子（原文 → 题干）</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>压根没提</strong></td><td>原文只说"他做了"，题干问的是"他喜欢做吗"</td></tr>
+            <tr><td><strong>题干更具体</strong></td><td><code>in Europe → in the UK</code>（范围一收窄，原文就管不着了）</td></tr>
+            <tr><td><strong>愿望当事实</strong></td><td><code>aims to reduce → has reduced</code></td></tr>
+            <tr><td><strong>凭空比较</strong></td><td>原文分别提了 A 和 B，题干却说 A 比 B 更…</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>共同信号：<span className="kw">盯紧 all / always / only / must 这类绝对词和范围词——FALSE 靠"改程度"制造矛盾，NG 靠"改范围"跳出原文。</span></p>
+
       <Note tag="别脑补">
         NOT GIVEN 的陷阱就是"听起来很合理"。合理≠原文说过。
         <b>只要你要靠推理、常识、或"应该是这样"才能判成 False，那多半就是 Not Given。</b>
